@@ -6,13 +6,12 @@ more AXIS cameras, and saves then to a specified
 directory ($axis_pic_path).
 
 AXIS software will throw/put jpg images at a
-web server. This is set up so all you should have
-to do is fire-up this service and point all the
-cameras at this app (http://[server_address]:6543/pics).
+web server. All you should have to do is fire-up
+this service and point all the cameras at this app.
 No additional server side configuration is necessary.
 
-Images from each camera are saved to individual
-directories:
+Images from each camera are saved to disk in
+individual directories:
 
   $axis_pic_path/$CAMERA_IP_ADDRESS
 
@@ -125,3 +124,4 @@ At this point, your AXIS camera should be hurling images at the Pyramid app.
 
 It's all pretty simple. If it doesn't work, well...
 let me know and I'll see if I can fix it.
+
