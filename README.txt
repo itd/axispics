@@ -5,9 +5,21 @@ This captures a series of images from one or
 more AXIS cameras, and saves then to a specified
 directory ($axis_pic_path).
 
-Images from each camera are saved to
-$axis_pic_path/$CAMERA_IP_ADDRESS, e.g.,
-/path/to/images/192.168.0.102
+AXIS software will throw/put jpg images at a
+web server. This is set up so all you should have
+to do is fire-up this service and point all the
+cameras at this app (http://[server_address]:6543/pics).
+No additional server side configuration is necessary.
+
+Images from each camera are saved to individual
+directories:
+
+  $axis_pic_path/$CAMERA_IP_ADDRESS
+
+For example:
+
+  /path/to/images/192.168.0.102
+
 
 Requirements
 ===============
@@ -37,15 +49,14 @@ it would look something like this::
   $ cd axispics
   $ python setup.py develop
   # Configure the app
-    * Edit the value for "axis_pic_path" in both
-      the production.ini and development.ini files.
-      (Make sure your <axis_pic_path> exists.)
-
-    * Fire up your Pyramid app.
+  * Edit the value for "axis_pic_path" in both
+    the production.ini and development.ini files.
+    (Make sure your <axis_pic_path> exists.)
+  * Fire up your Pyramid app.
 
   $ ../bin/pserve development.ini reload
 
-Your app should now be running on port 6543.
+Your app *should* now be running on port 6543.
 
 Configure your AXIS camera
 ==============================
@@ -112,6 +123,5 @@ ideas for settings. Roll your own.
 
 At this point, your AXIS camera should be hurling images at the Pyramid app.
 
-
-
-
+It's all pretty simple. If it doesn't work, well...
+let me know and I'll see if I can fix it.
