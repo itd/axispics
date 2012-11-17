@@ -1,4 +1,4 @@
-axis-pics README
+axispics README
 =================
 
 This captures a series of images from one or
@@ -9,13 +9,43 @@ Images from each camera are saved to
 $axis_pic_path/$CAMERA_IP_ADDRESS, e.g.,
 /path/to/images/192.168.0.102
 
-* Edit the value for "axis_pic_path" in both
-  the production.ini and development.ini files.
+Requirements
+===============
+This is a Pyramid app. It's an embarrassingly simple
+and most likely awful app, but it does the job for
+what I needed. At least for now.
 
-* Make sure your <axis_pic_path> exists.
+You'll want Pyramid 1.3+. To get it working,
+set up a python 2.7.x or better virtualenv.
+For example::
 
-* Fire up your Pyramid app.
+  virtualenv venv-axis
 
+source the virtualenv::
+
+  $ source venv-axis/bin/activate
+
+Since this runs under Pyramid, install Pyramid.
+I don't know the "standard" install method, but if I did,
+it would look something like this::
+
+  $ cd venv-axis
+  $ easy_install pyramid
+  $ mkdir src
+  $ cd src
+  $ git clone
+  $ cd axispics
+  $ python setup.py develop
+  # Configure the app
+    * Edit the value for "axis_pic_path" in both
+      the production.ini and development.ini files.
+      (Make sure your <axis_pic_path> exists.)
+
+    * Fire up your Pyramid app.
+
+  $ ../bin/pserve development.ini reload
+
+Your app should now be running on port 6543.
 
 Configure your AXIS camera
 ==============================
