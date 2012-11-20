@@ -56,6 +56,14 @@ it would look something like this::
   $ ../bin/pserve development.ini reload
 
 Your app *should* now be running on port 6543.
+Did it work? if so, shove this into cron:
+
+# crontab -e
+# run it every minute, just to make sure it's running.
+# m   h   dom  mon  dow   command
+  *   *   *    *    *    /opt/cam/axis-pics/venv-axis/bin/pserve /opt/cam/axis-pics/axis-pics/production.ini > /dev/null 2>&1
+
+It's rude, but it works.
 
 Configure your AXIS camera
 ==============================
