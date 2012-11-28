@@ -1,10 +1,15 @@
 import os
 from pyramid.response import Response
 from pyramid.view import view_config
+import datetime
+
 
 @view_config(route_name='home', renderer='templates/axispics.pt')
 def home_view(request):
     return {'project':'axis-pics'}
+
+def theDate():
+    return datetime.datetime.now().strftime("%Y-%m-%d")
 
 @view_config(route_name='pics')
 def pics_view(request):
@@ -15,7 +20,7 @@ def pics_view(request):
     contd = headers['Content-Disposition']
     filename = contd.rsplit('"')[1]
     ip = request.remote_addr
-    dest_path = '%s/%s/' % (dest_dir, ip)
+    dest_path = '%s/%s-%s/' % (dest_dir, ip, theDate())
 
     if not os.path.exists(dest_path):
         os.makedirs(dest_path)
