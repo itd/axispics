@@ -12,9 +12,9 @@ requires = [
     'waitress',
     ]
 
-setup(name='axis-pics',
+setup(name='axispics',
       version='0.0',
-      description='axis-pics',
+      description='axispics',
       long_description=README + '\n\n' +  CHANGES,
       classifiers=[
         "Programming Language :: Python",
