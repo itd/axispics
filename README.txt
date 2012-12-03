@@ -1,23 +1,24 @@
 axispics README
 =================
 
-This captures a series of images from one or
-more AXIS cameras, and saves then to a specified
-directory ($axis_pic_path).
+This captures a series of images from one or more AXIS
+cameras, and saves then to a specified directory. It's a
+very minimal application. Add featurs and functionality
+as your need or desire dictates.
 
-AXIS software will throw/put jpg images at a
-web server. All you should have to do is fire-up
-this service and point all the cameras at this app.
-No additional server side configuration is necessary.
+AXIS software can be configured to throw jpg images at a web server.
+Edit the .cfg file(s) then fire-up this application to get
+a web server running. Then, point all the cameras at this app.
+No additional server-side configuration should be necessary.
 
-Images from each camera are saved to disk in
-individual directories:
+Images from each camera are saved to disk in per-camera-ip-date
+directories:
 
-  $axis_pic_path/$CAMERA_IP_ADDRESS
+  $axis_pic_path/$CAMERA_IP_ADDRESS_$DATE
 
 For example:
 
-  /path/to/images/192.168.0.102
+  /path/to/images/192.168.0.102-2012-11-30
 
 
 Requirements
@@ -59,9 +60,9 @@ Your app *should* now be running on port 6543.
 Did it work? if so, shove this into cron:
 
 # crontab -e
-# run it every minute, just to make sure it's running.
+# run it every 10 minutes, just to make sure it's running.
 # m   h   dom  mon  dow   command
-  *   *   *    *    *    /opt/cam/axis-pics/venv-axis/bin/pserve /opt/cam/axis-pics/axis-pics/production.ini > /dev/null 2>&1
+*/10   *   *    *    *    /opt/axispics/venv-axis/bin/pserve /opt/axispics/axispics/production.ini > /dev/null 2>&1
 
 It's rude, but it works.
 
@@ -70,6 +71,7 @@ Configure your AXIS camera
 I'll assume you've hacked around with your AXIS camera and
 figured out how to set up the password, IP address, and date/time.
 Now, on to getting it to talk to this cheezy little app...
+
 
 Create an Event Server
 -----------------------
@@ -103,13 +105,17 @@ Do this under [Events > Event Types]
 For Motion Detection, select [Add Triggered...]
 For a timer, select [Add scheduled...]
 
-I've done either a timer or using Motion Detection.
+I'm using Motion Detection.
 You'll have to create a "Motion Detection" window
 under [Events > Motion Detection] first if you want
 to play with that option.
 
 Also, I'm lazy and letting the camera define the file names.
 So make sure you set the date/time correctly on your cameras.
+
+Tip: prefix your file names with something consistent and identifiable,
+e.g., "cam-102-"., and do that consistently per camera. If you need to
+script something against the files, you'll have something to work with.
 
 
 Example Scheduled Event set up
@@ -133,3 +139,17 @@ At this point, your AXIS camera should be hurling images at the Pyramid app.
 It's all pretty simple. If it doesn't work, well...
 let me know and I'll see if I can fix it.
 
+
+Encoding jpg into a movie
+=========================
+I'm still working on this. In linux, ffmpeg/avconv wants files in a consistent
+number format. Since I was using the stock AXIS date formatting doesn't work
+(However, I believe the date formatting can be tweaked to work.)
+
+mencoder seems to work for now. Here's a stab at getting
+something working that gets all the .jpg files in the current directory
+and writes them to "/out/path/outputfile.mp4". I've read there may be
+issues with the mp4 container. I'm still working with this.
+
+mencoder mf://*.jpg -mf fps=30:type=jpg -ovc x264 -x264encopts \
+  bitrate=1400:threads=2 -lavfopts format=mp4 -o /out/path/outputfile.mp4
