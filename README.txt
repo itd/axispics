@@ -18,7 +18,7 @@ directories:
 
 For example:
 
-  /path/to/images/192.168.0.102-2012-11-30
+  /path/to/images/192.168.0.102_2012-11-30
 
 
 Requirements
