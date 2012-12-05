@@ -3,7 +3,7 @@ axispics README
 
 This captures a series of images from one or more AXIS
 cameras, and saves then to a specified directory. It's a
-very minimal application. Add featurs and functionality
+very minimal application. Add features and functionality
 as your need or desire dictates.
 
 AXIS software can be configured to throw jpg images at a web server.
@@ -19,6 +19,9 @@ directories:
 For example:
 
   /path/to/images/192.168.0.102_2012-11-30
+
+More info about AXIS cameras can be found at:
+  http://www.axis.com/
 
 
 Requirements
@@ -59,10 +62,11 @@ it would look something like this::
 Your app *should* now be running on port 6543.
 Did it work? if so, shove this into cron:
 
-# crontab -e
-# run it every 10 minutes, just to make sure it's running.
-# m   h   dom  mon  dow   command
-*/10   *   *    *    *    /opt/axispics/venv-axis/bin/pserve /opt/axispics/axispics/production.ini > /dev/null 2>&1
+ # crontab -e
+ # run it every 10 minutes, just to make sure it's running.
+ # m   h   dom  mon  dow   command
+ */10   *   *    *    *    /opt/axispics/venv-axis/bin/pserve /opt/axispics/axispics/production.ini > /dev/null 2>&1
+
 
 It's rude, but it works.
 
@@ -70,6 +74,8 @@ Configure your AXIS camera
 ==============================
 I'll assume you've hacked around with your AXIS camera and
 figured out how to set up the password, IP address, and date/time.
+I'm using a couple of the Axis 5512 IP cameras. The software on those
+seems to deliver a reasonable image quality for what I need.
 Now, on to getting it to talk to this cheezy little app...
 
 
@@ -153,3 +159,4 @@ issues with the mp4 container. I'm still working with this.
 
 mencoder mf://*.jpg -mf fps=30:type=jpg -ovc x264 -x264encopts \
   bitrate=1400:threads=2 -lavfopts format=mp4 -o /out/path/outputfile.mp4
+
