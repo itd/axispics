@@ -50,9 +50,9 @@ it would look something like this::
   $ cd ./axispics
   $ python setup.py develop
   # Configure the app
-  * Edit the value for "axis_pic_path" in both
-    the production.ini and development.ini files.
-    (Make sure your <axis_pic_path> exists.)
+    * Edit the value for "axis_pic_path" in both
+      the production.ini and development.ini files.
+      (Make sure your <axis_pic_path> exists.)
   * Fire up your Pyramid app.
 
   $ ../venv-axis/bin/pserve development.ini --reload
