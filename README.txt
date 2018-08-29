@@ -55,7 +55,7 @@ it would look something like this::
       (Make sure your <axis_pic_path> exists.)
   * Fire up your Pyramid app.
 
-  $ ../venv-axis/bin/pserve development.ini --reload
+  $ ../venv-vid/bin/pserve development.ini --reload
 
 Your app *should* now be running on port 6543.
 Did it work? if so, shove this into cron:
@@ -63,7 +63,7 @@ Did it work? if so, shove this into cron:
  # crontab -e
  # run it every 10 minutes, just to make sure it's running.
  # m   h   dom  mon  dow   command
- */10   *   *    *    *    /opt/axispics/venv-axis/bin/pserve /opt/axispics/axispics/production.ini > /dev/null 2>&1
+ */10   *   *    *    *    /opt/venv-vid/bin/pserve /opt/code/timelapse/axispics/production.ini > /dev/null 2>&1 &
 
 
 It's rude, but it works.
@@ -79,6 +79,8 @@ Now, on to getting it to talk to this cheezy little app...
 
 Create an Event Server
 -----------------------
+
+Click Setup.
 
 Under [Events > Event Servers] select [Add HTTP...]
 

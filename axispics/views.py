@@ -1,4 +1,6 @@
 import os
+from waitress import serve
+from pyramid.config import Configurator
 from pyramid.response import Response
 from pyramid.view import view_config
 import datetime
@@ -6,10 +8,12 @@ import datetime
 
 @view_config(route_name='home', renderer='templates/axispics.pt')
 def home_view(request):
-    return {'project':'axispics'}
+    return {'project': 'axispics'}
+
 
 def theDate():
     return datetime.datetime.now().strftime("%Y-%m-%d")
+
 
 @view_config(route_name='pics')
 def pics_view(request):
