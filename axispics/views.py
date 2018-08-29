@@ -6,7 +6,7 @@ import datetime
 
 @view_config(route_name='home', renderer='templates/axispics.pt')
 def home_view(request):
-    return {'project':'axis-pics'}
+    return {'project':'axispics'}
 
 def theDate():
     return datetime.datetime.now().strftime("%Y-%m-%d")

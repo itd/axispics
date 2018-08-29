@@ -57,7 +57,7 @@ it would look something like this::
     (Make sure your <axis_pic_path> exists.)
   * Fire up your Pyramid app.
 
-  $ ../bin/pserve development.ini reload
+  $ ../venv-axis/bin/pserve development.ini --reload
 
 Your app *should* now be running on port 6543.
 Did it work? if so, shove this into cron:
