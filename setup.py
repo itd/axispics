@@ -10,6 +10,8 @@ requires = [
     'pyramid',
     'pyramid_debugtoolbar',
     'waitress',
+    'pyramid_chameleon',
+    'pyramid_mako'
     ]
 
 setup(name='axispics',
