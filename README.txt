@@ -34,22 +34,20 @@ You'll want Pyramid 1.3+. To get it working,
 set up a python 2.7.x or better virtualenv.
 For example::
 
-  virtualenv venv-axis
+  cd $your_dev_dir
+  virtualenv venv-vid
 
 source the virtualenv::
 
-  $ source venv-axis/bin/activate
+  $ source venv-vid/bin/activate
 
 Since this runs under Pyramid, install Pyramid.
 I don't know the "standard" install method, but if I did,
 it would look something like this::
 
-  $ cd venv-axis
-  $ easy_install pyramid
-  $ mkdir src
-  $ cd src
-  $ git clone
-  $ cd axispics
+  $ pip install -r requirements.txt
+  $ git clone git@github.com:itd/axispics.git
+  $ cd ./axispics
   $ python setup.py develop
   # Configure the app
   * Edit the value for "axis_pic_path" in both

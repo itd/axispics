@@ -13,7 +13,7 @@ requires = [
     ]
 
 setup(name='axispics',
-      version='0.0',
+      version='2.0-dev',
       description='axispics',
       long_description=README + '\n\n' +  CHANGES,
       classifiers=[
