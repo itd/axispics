@@ -6,8 +6,8 @@ from pyramid.view import view_config
 import datetime
 
 
-@view_config(route_name='home', renderer='templates/axispics.pt')
-def home_view(request):
+@view_config(route_name='help', renderer='templates/axispics.pt')
+def help_view(request):
     return {'project': 'axispics'}
 
 
