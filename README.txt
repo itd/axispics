@@ -34,30 +34,28 @@ You'll want Pyramid 1.3+. To get it working,
 set up a python 2.7.x or better virtualenv.
 For example::
 
-  virtualenv venv-axis
+  cd $your_dev_dir
+  virtualenv venv-vid
 
 source the virtualenv::
 
-  $ source venv-axis/bin/activate
+  $ source venv-vid/bin/activate
 
 Since this runs under Pyramid, install Pyramid.
 I don't know the "standard" install method, but if I did,
 it would look something like this::
 
-  $ cd venv-axis
-  $ easy_install pyramid
-  $ mkdir src
-  $ cd src
-  $ git clone
-  $ cd axispics
+  $ pip install -r requirements.txt
+  $ git clone git@github.com:itd/axispics.git
+  $ cd ./axispics
   $ python setup.py develop
   # Configure the app
-  * Edit the value for "axis_pic_path" in both
-    the production.ini and development.ini files.
-    (Make sure your <axis_pic_path> exists.)
+    * Edit the value for "axis_pic_path" in both
+      the production.ini and development.ini files.
+      (Make sure your <axis_pic_path> exists.)
   * Fire up your Pyramid app.
 
-  $ ../venv-axis/bin/pserve development.ini --reload
+  $ ../venv-vid/bin/pserve development.ini --reload
 
 Your app *should* now be running on port 6543.
 Did it work? if so, shove this into cron:
@@ -65,7 +63,7 @@ Did it work? if so, shove this into cron:
  # crontab -e
  # run it every 10 minutes, just to make sure it's running.
  # m   h   dom  mon  dow   command
- */10   *   *    *    *    /opt/axispics/venv-axis/bin/pserve /opt/axispics/axispics/production.ini > /dev/null 2>&1
+ */10   *   *    *    *    /opt/venv-vid/bin/pserve /opt/code/timelapse/axispics/production.ini > /dev/null 2>&1 &
 
 
 It's rude, but it works.
@@ -81,6 +79,8 @@ Now, on to getting it to talk to this cheezy little app...
 
 Create an Event Server
 -----------------------
+
+Click Setup.
 
 Under [Events > Event Servers] select [Add HTTP...]
 
